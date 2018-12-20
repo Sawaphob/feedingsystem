@@ -52,6 +52,7 @@ class App extends Component {
   }
 
   render() {
+    const check = {};
     return (
       <div className="App float-none" id="main">
         <nav className="navbar navbar-dark bg-primary">
@@ -71,7 +72,7 @@ class App extends Component {
           alt="light"
           width="300"
           height="300"
-          class = "feeding"
+          class = {this.state.state == "Waiting"? "":"feeding"}
         />
         <div className="time">
         &nbsp;Current Time :  
@@ -133,7 +134,7 @@ class App extends Component {
               onClick={() => {
                 console.log("Send");
                 //this.sendMicroGear();
-                this.setState({ nextSchedule: this.stamp});
+                this.setState({ nextSchedule: this.state.stamp});
               }}
             >
               Send
