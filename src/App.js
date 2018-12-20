@@ -49,6 +49,20 @@ class App extends Component {
 
   componentDidMount() {
     document.title = "Feeding System"
+    setInterval(() => {
+      if (this.state.nextSchedule != "NONE") {
+        var h = this.state.nextSchedule[0] + this.state.nextSchedule[1]
+        console.log(h)
+        var m = this.state.nextSchedule[3] + this.state.nextSchedule[4]
+        console.log(m)
+        var d = new Date();
+        if (h == d.getHours() && m == d.getMinutes()) {
+          this.setState({state : "Feeding"})
+        } else {
+          this.setState({state : "Waiting"})
+        }
+      }
+    },1000)
   }
 
   render() {
@@ -97,7 +111,7 @@ class App extends Component {
             <div className = "timeenter">
             <TimeInput
             initialTime= '00:00'
-            onInput={e => {
+            onChange={e => {
               this.setState({ stamp: e.target.value });
               console.log(e.target.value);
             }}
